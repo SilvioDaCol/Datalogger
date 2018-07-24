@@ -1,0 +1,55 @@
+﻿****************************************************
+PRE-DESENVOLVIMENTO HARDWARE
+****************************************************
+OK	1. Coletar requisitos
+OK	2. Definir Diagrama de blocos
+OK	3. Escolha do MCU e demais componentes
+OK		CI RTC: DS1307
+OK		Modulo Bluetooth: HC-05
+OK		Memória: 
+OK			(Descartado)EEPROM 512Kbits (24LC512) ou Cartão SD + Módulo adaptador
+OK			(Escolhido)Emulated EEPROM
+OK		MCU: PIC PIC18F2520
+OK	4. Elaborar diagrama Funcional
+OK	5. Elaborar lista de pecas
+OK	6. Comprar pecas
+OK	7. Montar circuito no ProtoBoard
+
+****************************************************
+DESENVOLVIMENTO E VALIDACAO DE FirmWare (FW)
+****************************************************
+OK	7. Elaborar Fluxograma para o FW
+OK	8. Iniciar Escrita do FW
+OK	- Receber Pulso dos optoacopladores
+OK	- Escrever e ler um endereço específico da flash;
+OK    	- Ler e ajustar horário no RTC;
+OK  	- Escrever e Ler string por bluetooh.(Byte a Byte)
+OK	- Definir formato definitivo da tabela EVENTO
+OK	- Desenvolver código do Fluxograma: REGISTRA_EVENTO
+OK		-Atualiza tabela TIME
+OK		-Atualiza tabela EVENTO
+OK		-Grava tabela EVENTO na flash(p/ teste com INTERFACE) 
+OK		-Testar (Disparar eventos e verificar dados na Flash)
+OK	- Algoritmo para gerenciamento da mem. de programa
+OK		-Definir tudo o que precisa ser armazenado em flash(Dados Evento e fixos)
+OK		-Criar uma rotina de identificação para o "Bloco de dados fixos"
+OK	- Desenvolver código do Fluxograma: INICIALIZACAO
+OK		 -Inicialização do contadorEvento
+	- Desenvolver código do Fluxograma: INTERFACE
+OK		-Desenhar formato do relatorio(log) no Excel (ID do local, ID da coleta...)
+OK		-Le tabela EVENTO da flash e converte/joga na tela (cmdLOG)
+OK		-Le tabela TIME e converte/joga na tela (cmdHOR)
+OK		-Recebe valores e converte/grava na tabela TIME (cmdAJU)
+	- Rotina de tratamento de Interrupções
+OK		-Definir entradas de interrupção (PORTB) 
+OK		-Desabilitar interupções de acordo com as funções a serem executadas
+
+OK	9. Realizar testes de FW a cada etapa desenvolvida (Modular)
+
+****************************************************
+DESENVOLVIMENTO E VALIDACAO DE HARDWARE (HW)
+****************************************************
+	10. Integrar demais circuitos ao diagrama funcional
+OK	11. Elaborar Layout
+	12. Prototipar HW
+	13. Gravar FW e Validar HW

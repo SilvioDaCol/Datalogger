@@ -1,0 +1,49 @@
+	 -------------------------
+	|ENDEREÇOS DO BLOCO FIXO: |
+	|(offset = endBlocoFixo)  |
+	|-------------------------|
+	|00 - 07 blocoFixoID	  |	
+	|08 - 09 endBlocoFixo 	  |	08 - endBlocoFixo(High)  09 - endBlocoFixo(Low)
+	|10 - 11 endIniLog	  |	10 - endIniLog(High)  11 - endIniLog(Low)
+	|12 - 13 endFinLog	  | 	12 - endFinLog(High)  13 - endFinLog(Low)
+	|14 - 15 dataLoggerID	  |	14 - dataLoggerID(High)  15 - dataLoggerID(Low)
+	|16 - 17 contadorEvento	  |	16 - contadorEvento(High)  17 - contadorEvento(Low)
+	|  18 	 eventoIndex	  |	18 - eventoIndex (1 byte)
+	 -------------------------	
+	 19 Bytes(até o momento)
+
+
+
+**************         INICIALIZACAO                  *****************
+
+Procurar blocoFixoID na flash
+Se encontrar
+ok	Copiar dados do endBlocoFixo na flash para o array blocoFixo
+ok	Converter dados do array blocoFixo e copiar para as variaveis correspondentes
+ok	Inicializar tabela Evento com valores correntes da flash
+	Inicializar evento_Index = endFinLog + 64 - endBlocoFixo
+Se nao encontrar
+ok	Inicializar Variaveis do blocoFixo 
+ok	Converter dados das variaveis e copiar para endereço na flash (endBlocoFixo+64)
+ok	Incializar evento_index = 0
+ok	Inicializar contadorEvento = 0;
+	
+***********************************************************************
+
+
+
+
+*****************         EVENTO                  *********************
+
+----Cria copia de segurança do bloco fixo-----
+ok	Incrementa variavel com o endereço do bloco fixo em 64bytes
+ok	Converte dados das varaveis e atualiza array do bloco fixo
+ok	Escreve array do bloco fixo na flash com o novo endereço (+64)
+
+ok	Escreve Array de 64bytes (evento) no decremento de 64 do endereço do bloco fixo
+
+
+	*Obs a cada novo evento, atualizar variavel com o endereço final do log e seus 
+ 	devidos cuidados com fim de memoria e inicio de log.
+***********************************************************************
+
